@@ -52,7 +52,7 @@ Use with reply decorate
 
 ```js
 fastify.get("/", async (request, reply) => {
-  fastify.nodemailer.sendMail({
+  reply.nodemailer.sendMail({
     from: "testuser@gmail.com",
     to: request.body.email,
     subject: "Test User",
