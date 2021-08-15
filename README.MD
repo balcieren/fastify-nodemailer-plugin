@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/npm/v/fastify-nodemailer-plugin.svg)](https://www.npmjs.com/package/fastify-nodemailer-plugin)
 
-A Bcrypt hash generator & checker for Fastify
+Nodemailer for Fastify
 
 ## Installation
 
