@@ -4,6 +4,8 @@ import nodemailer from "nodemailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
 
 export type FastifyNodemailerOptions = SMTPTransport.Options;
+export const createTestAccount = nodemailer.createTestAccount;
+export const getTestMessageUrl = nodemailer.getTestMessageUrl;
 
 const nodeMailerPlugin: FastifyPluginCallback<FastifyNodemailerOptions> = (
   fastify,
@@ -15,8 +17,14 @@ const nodeMailerPlugin: FastifyPluginCallback<FastifyNodemailerOptions> = (
       new Error("fastify-nodemailer-plugin has been defined before ")
     );
 
-  fastify.decorate("nodemailer", nodemailer.createTransport(options));
-  fastify.decorateReply("nodemailer", fastify.nodemailer);
+  fastify
+    .decorate("nodemailer", nodemailer.createTransport(options))
+    .decorateReply("nodemailer", fastify.nodemailer)
+    .addHook("onClose", (fastify, done) => {
+      fastify.nodemailer.close();
+      done();
+    });
+
   done();
 };
 

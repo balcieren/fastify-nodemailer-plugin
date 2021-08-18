@@ -11,7 +11,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "test": "npx tap -Rspec --coverage --ts ./test/**/*.test.ts"
   },
   "repository": {
     "type": "git",
@@ -25,11 +26,14 @@
   ],
   "devDependencies": {
     "@types/node": "^16.6.1",
-    "@types/nodemailer": "^6.4.4",
+    "@types/tap": "^15.0.5",
     "fastify": "^3.20.2",
+    "tap": "^15.0.9",
+    "ts-node": "^10.2.1",
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@types/nodemailer": "^6.4.4",
     "fastify-plugin": "^3.0.0",
     "nodemailer": "^6.6.3"
   }
